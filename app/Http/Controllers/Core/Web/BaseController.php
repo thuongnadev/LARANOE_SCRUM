@@ -35,7 +35,7 @@ class BaseController extends Controller
 
             return view($this->view.'::index', ['items' => $items]);
         } catch (\Exception $e) {
-            return view($this->view.'::error', ['message' => $e->getMessage()]);
+            return view($this->view.'::index', ['message' => $e->getMessage()]);
         }
     }
 

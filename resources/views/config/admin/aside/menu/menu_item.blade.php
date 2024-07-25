@@ -1,4 +1,5 @@
 @php
+
 $navItems = [
 [
 'id' => 'kt_aside_nav_tab_studio',
@@ -8,7 +9,7 @@ $navItems = [
 </svg>',
 ],
 [
-'id' => 'kt_aside_nav_tab_projects',
+'id' => 'project',
 'title' => 'Projects',
 'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path d="M18 21.6C16.6 20.4 9.1 20.3 6.3 21.2C5.7 21.4 5.1 21.2 4.7 20.8L2 18C4.2 15.8 10.8 15.1 15.8 15.8C16.2 18.3 17 20.5 18 21.6ZM18.8 2.8C18.4 2.4 17.8 2.20001 17.2 2.40001C14.4 3.30001 6.9 3.2 5.5 2C6.8 3.3 7.4 5.5 7.7 7.7C9 7.9 10.3 8 11.7 8C15.8 8 19.8 7.2 21.5 5.5L18.8 2.8Z" fill="black" />

@@ -4,7 +4,7 @@ namespace $CLASS_NAMESPACE$;
 
 use App\Http\Controllers\Core\Web\BaseController;
 use Illuminate\Support\Facades\Validator;
-use Modules\Blog\Models\$NAME$;
+use Modules\$NAME$\Models\$NAME$;
 
 class $CLASS$ extends BaseController
 {
