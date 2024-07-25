@@ -15,8 +15,8 @@ Route::get('/heo', [HandleModuleController::class, 'listModules']);
 
 Route::get('/admin', function () {
     return view('pages.admin.index');
-});
+})->middleware('auth');
 
-Route::get('/admin/login', function () {
+Route::get('/login', function () {
     return view('pages.auth.login');
-});
+})->name('login');
