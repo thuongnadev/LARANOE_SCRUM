@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Core\HandleModule\HandleModuleController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 Route::prefix('module')->group(function () {
     Route::post('create', [HandleModuleController::class, 'store']);
@@ -20,3 +22,11 @@ Route::get('/admin', function () {
 Route::get('/login', function () {
     return view('pages.auth.login');
 })->name('login');
+
+Route::post('/logout', function (Request $request) {
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/login');
+})->name('logout');
