@@ -143,11 +143,7 @@
                         <option value="Completed">Completed</option>
                     </select>
                 </td>
-                <select id="column_id" class="form-select mt-1 block w-full">
-                    @foreach ($columns as $column)
-                        <option value="{{ $column->id }}">{{ $column->name }}</option>
-                    @endforeach
-                </select>
+                ]
                 <td colspan="">
                     <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2" onclick="addSprintBacklog()">Add</button>
                 </td>
@@ -158,39 +154,5 @@
         </tbody>
         <!--end::Table body-->
     </table>
-    <script>
-        function showForm() {
-            document.getElementById('add-button-row').classList.add('hidden');
-            document.getElementById('add-form-row').classList.remove('hidden');
-        }
     
-        function hideForm() {
-            document.getElementById('add-button-row').classList.remove('hidden');
-            document.getElementById('add-form-row').classList.add('hidden');
-        }
-    
-        function addSprintBacklog() {
-            // Lấy giá trị từ các trường nhập liệu
-            let title = document.getElementById('title').value;
-            let type = document.getElementById('type').value;
-            let created_at = document.getElementById('created_at').value;
-            let start_day = document.getElementById('start_day').value;
-            let end_day = document.getElementById('end_day').value;
-            let status = document.getElementById('status').value;
-    
-            // Gửi yêu cầu Livewire để thêm sprint backlog mới
-            @this.call('addSprintBacklog', title, type, created_at, start_day, end_day, status);
-    
-            // Ẩn form và hiển thị lại nút
-            hideForm();
-    
-            // Reset các trường nhập liệu
-            document.getElementById('title').value = '';
-            document.getElementById('type').value = 'Done';
-            document.getElementById('created_at').value = '';
-            document.getElementById('start_day').value = '';
-            document.getElementById('end_day').value = '';
-            document.getElementById('status').value = 'Pending';
-        }
-    </script>
 </div>
