@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/listboard",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\ListBoard\\": "app/",
+            "Modules\\ListBoard\\Database\\Factories\\": "database/factories/",
+            "Modules\\ListBoard\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\ListBoard\\Tests\\": "tests/"
+        }
+    }
+}
