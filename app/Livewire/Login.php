@@ -24,7 +24,7 @@ class Login extends Component
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
             return redirect()->intended('admin');
         } else {
-            $this->error = 'Invalid credentials.';
+            $this->addError('credentials', 'The provided credentials are incorrect.');
         }
     }
 
