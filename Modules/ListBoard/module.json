@@ -1,0 +1,11 @@
+{
+    "name": "ListBoard",
+    "alias": "listboard",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ListBoard\\Providers\\ListBoardServiceProvider"
+    ],
+    "files": []
+}

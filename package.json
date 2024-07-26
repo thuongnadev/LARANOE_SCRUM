@@ -21,6 +21,7 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "fullcalendar": "^6.1.15"
         "@alpinejs/sort": "^3.14.1",
         "alpinejs": "^3.14.1"
     }
