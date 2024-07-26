@@ -35,6 +35,8 @@
                         @this.call('updateEvent', id, event.start.toISOString(), event.end ? event.end
                             .toISOString() : null);
                     }
+                    console.log('start drop',info.event.start);
+                        console.log('end drop',event.end);
                 },
                 eventResize: function(info) {
                     var event = info.event;
@@ -44,6 +46,9 @@
                         @this.call('updateEvent', id, event.start.toISOString(), event.end ? event.end
                             .toISOString() : null);
                     }
+                    console.log('start resize',info.event.start.toISOString());
+                        console.log('end resize',event.end);
+                    
                 },
 
                 eventClick: function(info) {

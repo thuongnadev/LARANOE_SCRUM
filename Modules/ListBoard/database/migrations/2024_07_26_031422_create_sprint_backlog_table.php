@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sprint_backlogs');
+        Schema::dropIfExists('sprint_backlog');
     }
 };
