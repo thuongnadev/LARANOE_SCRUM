@@ -14,18 +14,13 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('project_name');
-            $table->text('description')->nullable();
-            $table->foreignId('product_owner_id')->constrained('users');
-            $table->foreignId('scrum_master_id')->nullable()->constrained('users');
-            $table->enum('status', ['planning', 'in_progress', 'on_hold', 'completed', 'cancelled'])->default('planning');
-            $table->date('start_date')->nullable();
-            $table->date('end_date')->nullable();
-            $table->integer('estimated_duration')->nullable(); // in days
-            $table->decimal('budget', 15, 2)->nullable();
+            $table->foreignId('creator')->constrained('users');
+            $table->tinyInteger('status')->default(0);
+            $table->dateTime('start_date')->nullable();
+            $table->dateTime('end_date')->nullable();
             $table->string('client_name')->nullable();
             $table->string('client_email')->nullable();
             $table->string('repository_url')->nullable();
-            $table->json('tags')->nullable();
             $table->integer('priority')->default(0);
             $table->timestamps();
             $table->softDeletes();
