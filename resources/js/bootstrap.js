@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Calendar } from '@fullcalendar/core';
+import 'preline'
 import 'flowbite';
 import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
 import { Livewire, Alpine } from '../../vendor/livewire/livewire/dist/livewire.esm';
