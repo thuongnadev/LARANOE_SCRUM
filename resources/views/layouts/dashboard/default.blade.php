@@ -16,6 +16,7 @@
     <link rel="canonical" href="" />
     <link rel="shortcut icon" href="{{ asset('theme/dist/assets/media/logos/favicon.ico') }}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css"  rel="stylesheet" />
     @include('config.layout.style')
     @livewireStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -35,6 +36,7 @@
     @include('config.layout.script')
     @livewireScripts
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
     @stack('script')
 </body>
 
