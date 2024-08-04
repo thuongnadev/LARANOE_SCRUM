@@ -1,4 +1,5 @@
 import axios from 'axios';
+import 'flowbite';
 import { Calendar } from '@fullcalendar/core';
 import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
 window.axios = axios;
