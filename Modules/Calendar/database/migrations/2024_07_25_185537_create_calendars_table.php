@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('calendars', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->dateTime('start');
+            $table->foreignId('user_id')->nullable()->constrained('users');
+            $table->foreignId('sprint_id')->nullable()->constrained('sprints');
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
+            $table->dateTime('start')->nullable();
             $table->dateTime('end')->nullable();
+            $table->string('backgroundColor')->default('#3788d8');
             $table->timestamps();
         });
     }
