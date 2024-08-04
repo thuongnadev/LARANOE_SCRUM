@@ -112,19 +112,20 @@
             @endforeach
             <tr id="add-button-row">
                 <td colspan="7" class="text-center">
-                    <button id="add-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="showForm()">
+                    <button id="add-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        onclick="showForm()">
                         + Add Sprint Backlog
                     </button>
                 </td>
             </tr>
-    
-            <tr id="add-form-row" class="hidden">
+
+            <tr id="add-form-row" class="hidden bg-slate-400/10 rounded-md">
                 <td></td>
-                <td class="text-left">
-                    <input type="text" id="title" class="form-input mt-1 w-30 h-10 rounded-md p-2" placeholder="Title">
+                <td>
+                    <input type="text" id="title" class="form-input mt-1 w-30 h-9 rounded-md p-3" placeholder="Title">
                 </td>
                 <td>
-                    <select id="type" class="form-select mt-1 block w-full">
+                    <select id="type" class="form-select mt-1 w-28 h-12 text-left">
                         <option value="Done">Done</option>
                         <option value="task">Task</option>
                         <option value="Stuck">Stuck</option>
@@ -132,8 +133,10 @@
                     </select>
                 </td>
                 <td>
-                    <input type="date" id="created_at" class="form-input mt-1 block w-full" placeholder="Created At">
-                    <input type="date" id="start_day" class="form-input mt-1 block w-full" placeholder="Start Day">
+                    <input type="date" id="created_at" class="form-input mt-1 block w-full"
+                        placeholder="Created At">
+                    <input type="date" id="start_day" class="form-input mt-1 block w-full"
+                        placeholder="Start Day">
                     <input type="date" id="end_day" class="form-input mt-1 block w-full" placeholder="End Day">
                 </td>
                 <td>
@@ -143,16 +146,20 @@
                         <option value="Completed">Completed</option>
                     </select>
                 </td>
-                <select id="column_id" class="form-select mt-1 block w-full">
-                    @foreach ($columns as $column)
-                        <option value="{{ $column->id }}">{{ $column->name }}</option>
-                    @endforeach
-                </select>
-                <td colspan="">
-                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2" onclick="addSprintBacklog()">Add</button>
+                <td>
+                    <select id="column_id" class="form-select mt-1 block w-full">
+                        @foreach ($columns as $column)
+                            <option value="{{ $column->id }}">{{ $column->name }}</option>
+                        @endforeach
+                    </select>
                 </td>
                 <td>
-                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-2" onclick="hideForm()">Cancel</button>
+                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2"
+                        onclick="addSprintBacklog()">Add</button>
+                </td>
+                <td>
+                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-2"
+                        onclick="hideForm()">Cancel</button>
                 </td>
             </tr>
         </tbody>
@@ -163,12 +170,12 @@
             document.getElementById('add-button-row').classList.add('hidden');
             document.getElementById('add-form-row').classList.remove('hidden');
         }
-    
+
         function hideForm() {
             document.getElementById('add-button-row').classList.remove('hidden');
             document.getElementById('add-form-row').classList.add('hidden');
         }
-    
+
         function addSprintBacklog() {
             // Lấy giá trị từ các trường nhập liệu
             let title = document.getElementById('title').value;
@@ -177,13 +184,14 @@
             let start_day = document.getElementById('start_day').value;
             let end_day = document.getElementById('end_day').value;
             let status = document.getElementById('status').value;
-    
+            let column_id = document.getElementById('column_id').value;
+
             // Gửi yêu cầu Livewire để thêm sprint backlog mới
-            @this.call('addSprintBacklog', title, type, created_at, start_day, end_day, status);
-    
+            @this.call('addSprintBacklog', title, type, created_at, start_day, end_day, status, column_id);
+
             // Ẩn form và hiển thị lại nút
             hideForm();
-    
+
             // Reset các trường nhập liệu
             document.getElementById('title').value = '';
             document.getElementById('type').value = 'Done';
@@ -191,6 +199,7 @@
             document.getElementById('start_day').value = '';
             document.getElementById('end_day').value = '';
             document.getElementById('status').value = 'Pending';
+            document.getElementById('column_id').value = '';
         }
     </script>
 </div>
