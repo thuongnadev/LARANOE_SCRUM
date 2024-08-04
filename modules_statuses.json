@@ -23,5 +23,6 @@
     "CoChi": true,
     "Blog": true,
     "Calendar": true,
-    "ListBoard": true
+    "ListBoard": true,
+    "Sprint": true
 }
