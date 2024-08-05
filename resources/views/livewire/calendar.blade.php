@@ -1,4 +1,12 @@
 <div>
+    <div class="flex justify-between items-center">
+        <button id="exportExcelButton" class="btn btn-success text-center m-2">Export to Excel</button>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" class="form-control w-96 rounded-md border-2 border-sky-500"
+                placeholder="Search events...">
+        </div>
+    </div>
     <div id="calendar" wire:ignore></div>
 
     <!-- Add Event Modal -->
@@ -69,7 +77,7 @@
 
     <!-- Edit Event Modal -->
     <div class="modal fade" tabindex="-1" id="kt_modal_edit_event">
-        <div class="modal-dialog modal-dialog-scrollable"">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content position-absolute">
                 <div class="modal-header">
                     <h3 class="modal-title font-medium text-xl">Edit Event</h3>
@@ -182,6 +190,21 @@
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
                 events: @json($events),
+                eventDidMount: function(info) {
+                    var searchInput = document.getElementById('searchInput');
+                    searchInput.addEventListener('input', function() {
+                        var searchTerm = searchInput.value.toLowerCase();
+                        var eventTitle = info.event.title.toLowerCase();
+                        var eventDescription = info.event.extendedProps.description
+                        .toLowerCase();
+
+                        if (eventTitle.includes(searchTerm) || eventDescription.includes(searchTerm)) {
+                            info.el.style.display = 'block';
+                        } else {
+                            info.el.style.display = 'none';
+                        }
+                    });
+                },
                 dateClick: function(info) {
                     alert('clicked ' + info.dateStr);
                 },
@@ -211,10 +234,14 @@
                     var id = event.id;
                     document.getElementById('editEventId').value = id;
                     document.getElementById('editEventTitleInput').value = event.title;
-                    document.getElementById('editEventDescriptionInput').value = event.extendedProps.description;
-                    document.getElementById('editEventStartInput').value = formatDateForDatetimeLocal(event.start);
-                    document.getElementById('editEventEndInput').value = formatDateForDatetimeLocal(event.end);
-                    document.getElementById('editEventBackgroundColorInput').value = event.backgroundColor;
+                    document.getElementById('editEventDescriptionInput').value = event.extendedProps
+                        .description;
+                    document.getElementById('editEventStartInput').value = formatDateForDatetimeLocal(
+                        event.start);
+                    document.getElementById('editEventEndInput').value = formatDateForDatetimeLocal(
+                        event.end);
+                    document.getElementById('editEventBackgroundColorInput').value = event
+                        .backgroundColor;
                     document.getElementById('eventCreatedAt').value = event.extendedProps.created_at;
                     document.getElementById('eventCreatedBy').value = event.extendedProps.created_by;
 
@@ -228,6 +255,26 @@
                 },
             });
             calendar.render();
+
+
+            // Export to Excel
+            document.getElementById('exportExcelButton').addEventListener('click', function() {
+                var events = calendar.getEvents();
+                var eventData = events.map(function(event) {
+                    return {
+                        Title: event.title,
+                        Description: event.extendedProps.description,
+                        Start: formatDateForDatetimeLocal(event.start.toISOString()),
+                        End: event.end ? formatDateForDatetimeLocal(event.end.toISOString()) : ''
+                    };
+                });
+
+                var worksheet = XLSX.utils.json_to_sheet(eventData);
+                var workbook = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(workbook, worksheet, "Events");
+                XLSX.writeFile(workbook, "events.xlsx");
+            });
+            // End Export to Excel
 
             var modalElement = new bootstrap.Modal(document.getElementById('kt_modal_3'));
             var modalEditElement = new bootstrap.Modal(document.getElementById('kt_modal_edit_event'));
@@ -278,15 +325,15 @@
 
                 if (id && title && start) {
                     @this.call('updateEvent', id, title, description, start, end, backgroundColor).then(
-                    response => {
-                        var calendarEvent = calendar.getEventById(id);
-                        calendarEvent.setProp('title', title);
-                        calendarEvent.setExtendedProp('description', description);
-                        calendarEvent.setStart(start);
-                        calendarEvent.setEnd(end);
-                        calendarEvent.setProp('backgroundColor', backgroundColor);
-                        modalEditElement.hide();
-                    });
+                        response => {
+                            var calendarEvent = calendar.getEventById(id);
+                            calendarEvent.setProp('title', title);
+                            calendarEvent.setExtendedProp('description', description);
+                            calendarEvent.setStart(start);
+                            calendarEvent.setEnd(end);
+                            calendarEvent.setProp('backgroundColor', backgroundColor);
+                            modalEditElement.hide();
+                        });
                 }
             }
 
@@ -329,7 +376,7 @@
                 var calendarEvent = calendar.getEventById(event.id);
                 if (calendarEvent) {
                     calendarEvent.setProp('title', event.title);
-                    calendarEvent.setExtendedProp('description', event.description);    
+                    calendarEvent.setExtendedProp('description', event.description);
                     calendarEvent.setStart(event.start);
                     calendarEvent.setEnd(event.end);
                     calendarEvent.setProp('backgroundColor', event.backgroundColor);

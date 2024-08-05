@@ -46,7 +46,7 @@ class Calendar extends Component
         $event = CalendarModel::create([
             'user_id' => auth()->id(),
             'title' => $title,
-            'description' => $description, 
+            'description' => $description,
             'start' => Carbon::parse($start)->format('Y-m-d H:i:s'),
             'end' => $end ? Carbon::parse($end)->format('Y-m-d H:i:s') : null,
             'backgroundColor' => $backgroundColor,
@@ -55,7 +55,7 @@ class Calendar extends Component
         $this->dispatch('eventAdded', [
             'id' => $event->id,
             'title' => $event->title,
-            'description' => $event->description, 
+            'description' => $event->description,
             'start' => Carbon::parse($event->start)->toIso8601String(),
             'end' => $event->end ? Carbon::parse($event->end)->toIso8601String() : null,
             'backgroundColor' => $event->backgroundColor,
