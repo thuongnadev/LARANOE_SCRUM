@@ -2,8 +2,10 @@
 
 namespace Modules\Calendar\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Sprint\Models\Sprint;
 
 class Calendar extends Model
 {
@@ -13,8 +15,18 @@ class Calendar extends Model
      * The attributes that are mass assignable.
      */
     protected $fillable = [
-        'title', 'start', 'end'
+        'title', 'description', 'sprint_id', 'start', 'end', 'user_id', 'backgroundColor'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function sprint()
+    {
+        return $this->belongsTo(Sprint::class);
+    }
 
     public function getValidationRules()
     {

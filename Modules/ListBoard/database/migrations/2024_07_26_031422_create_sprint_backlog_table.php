@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sprint_backlogs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->comment('');
             $table->enum('type', ['task', 'bug', 'story'])->default('task');
             $table->foreignId('column_id')->constrained('columns');
             $table->foreignId('assigned_to')->nullable()->constrained('users');

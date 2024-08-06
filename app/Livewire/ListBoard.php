@@ -10,15 +10,22 @@ use Modules\ListBoard\Models\SprintBacklog;
 class ListBoard extends Component
 {
     public $sprintBacklogs = [];
+    public $columns = []; 
 
     public function mount()
     {
         $this->loadSprintBacklogs();
+        $this->loadColumns();
     }
 
     public function loadSprintBacklogs()
     {
         $this->sprintBacklogs = SprintBacklog::all();
+    }
+
+    public function loadColumns()
+    {
+        $this->columns = Column::all(); 
     }
 
     public function addSprintBacklog($title, $type, $created_at, $start_day, $end_day, $status, $column_id)
@@ -38,6 +45,8 @@ class ListBoard extends Component
 
     public function render()
     {
-        return view('livewire.list-board');
+        return view('livewire.list-board', [
+            'columns' => $this->columns, 
+        ]);
     }
 }

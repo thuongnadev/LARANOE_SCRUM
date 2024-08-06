@@ -22,6 +22,8 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "flowbite": "^2.4.1",
+        "fullcalendar": "^6.1.15"
         "@alpinejs/sort": "^3.14.1",
         "alpinejs": "^3.14.1",
         "flowbite": "^2.4.1",

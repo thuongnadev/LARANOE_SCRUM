@@ -1,6 +1,7 @@
 {
     "Calendar": true,
     "ListBoard": true,
+    "Sprint": true
     "Board": true,
     "Project": true
 }
