@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Modules\Calendar\Models\Calendar;
+use Modules\Board\Models\SprintBacklog;
 use Modules\Project\Models\Project;
 
 class User extends Authenticatable
@@ -62,6 +63,11 @@ class User extends Authenticatable
     public function managedProjects()
     {
         return $this->hasMany(Project::class, 'scrum_master_id');
+    }
+
+    public function assignedSprintBacklogs()
+    {
+        return $this->hasMany(SprintBacklog::class, 'assigned_to');
     }
     public function isProductOwner()
     {

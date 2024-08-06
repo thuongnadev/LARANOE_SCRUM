@@ -26,7 +26,7 @@
 </head> 
 
 <body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed aside-fixed aside-secondary-enabled">
-    <div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-column">
         <div class="page d-flex flex-row flex-column-fluid">
             <x-aside></x-aside>
         </div>

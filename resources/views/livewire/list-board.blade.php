@@ -156,6 +156,9 @@
                 <td>
                     <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2"
                         onclick="addSprintBacklog()">Add</button>
+                ]
+                <td colspan="">
+                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2" onclick="addSprintBacklog()">Add</button>
                 </td>
                 <td>
                     <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-2"
@@ -202,4 +205,4 @@
             document.getElementById('column_id').value = '';
         }
     </script>
-</div>
+    </div>
