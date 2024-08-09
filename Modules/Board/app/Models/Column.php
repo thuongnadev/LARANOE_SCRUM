@@ -4,23 +4,20 @@ namespace Modules\Board\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\Sortable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Column extends Model
 {
-    use HasFactory;
+    use HasFactory, Sortable;
 
-    /**
-     * The attributes that are mass assignable.
-     */
-    protected $fillable = ['column_name'];
+    protected $fillable = [
+        'column_name',
+        'order'
+    ];
 
-    public function getValidationRules()
+    public function tasks(): HasMany
     {
-        // Define validation rules if necessary
-    }
-
-    public function sprintBacklogs()
-    {
-        return $this->hasMany(SprintBacklog::class, 'column_id');
+        return $this->hasMany(SprintBacklog::class);
     }
 }
