@@ -13,7 +13,16 @@
 	</div>
 	<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 		<div class="container-xxl" id="kt_content_container">
-            <livewire:board />
+            <div class="container mx-auto p-4">
+                <div class="dark antialiased bg-gray-50 dark:bg-gray-950 text-gray-950 dark:text-white font-normal min-h-screen">
+                    <div class="flex flex-col md:flex-row h-screen">
+                        <x-admin.board.layout.kanban-layout >
+                        <livewire:board.kanban.board class="flex-1" />
+                        <livewire:board.edit-task class="w-full md:w-1/3" />
+                        </x-admin.board.layout.kanban-layout>
+                    </div>
+                </div>
+            </div>
 		</div>
 	</div>
 </div>
